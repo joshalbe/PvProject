@@ -297,11 +297,11 @@ namespace PvProject
                 case "Paladin":
                     {
                         int currentTurn = _turnCount;
-                        while(currentTurn == _turnCount || currentTurn == _turnCount + 1)
-                        {
-                            yourArmor = yourArmor * 2;
+                        //while(currentTurn == _turnCount || currentTurn == _turnCount + 1)
+                        //{
+                            //yourArmor = yourArmor * 2;
                             //Attack(yourDamage, );
-                        }
+                        //}
                         break;
                     }
                 case "Warrior":
