@@ -32,7 +32,8 @@ namespace PvProject
 
         public void End()
         {
-
+            Console.Clear();
+            Console.WriteLine("That's all folks!");
         }
 
         //int _health1 = 10;
@@ -222,12 +223,14 @@ namespace PvProject
                 {
                     case '1':
                         {
-                            Attack(_player1._damage, _player2._armor, ref enemyHP);
+                            //Attack(_player1._damage, _player2._armor, ref enemyHP);
+                            _player1.Attack(_player2);
                             break;
                         }
                     case '2':
                         {
-                            Heal(_player1._magic, ref yourHP);
+                            //Heal(_player1._magic, ref yourHP);
+                            _player1.Heal();
                             break;
                         }
                 }
@@ -262,12 +265,14 @@ namespace PvProject
                     {
                         case '1':
                             {
-                                Attack(_player2._damage, _player1._armor, ref enemyHP);
+                                //Attack(_player2._damage, _player1._armor, ref enemyHP);
+                                _player2.Attack(_player1);
                                 break;
                             }
                         case '2':
                             {
-                                Heal(_player2._magic, ref yourHP);
+                                //Heal(_player2._magic, ref yourHP);
+                                _player2.Heal();
                                 break;
                             }
                     }
@@ -275,54 +280,54 @@ namespace PvProject
             }
         }
 
-        void Attack(int damage, int enemyArmor, ref int enemyHP)
-        {
-            damage -= enemyArmor / 2;
-            if(damage < 5)
-            {
-                damage = 5;
-            }
-            enemyHP -= damage;
-            Console.WriteLine();
-            Console.WriteLine("You did " + damage + " damage!");
-            Console.ReadLine();
-            Console.Clear();
-        }
+        //void Attack(int damage, int enemyArmor, ref int enemyHP)
+        //{
+            //damage -= enemyArmor / 2;
+            //if(damage < 5)
+            //{
+                //damage = 5;
+            //}
+            //enemyHP -= damage;
+            //Console.WriteLine();
+            //Console.WriteLine("You did " + damage + " damage!");
+            //Console.ReadLine();
+            //Console.Clear();
+        //}
 
-        void Heal(int magic, ref int yourHP)
-        {
-            yourHP += (magic/2);
-            Console.WriteLine();
-            Console.WriteLine("You healed up a bit!");
-            Console.ReadLine();
-            Console.Clear();
-        }
+        //void Heal(int magic, ref int yourHP)
+        //{
+            //yourHP += (magic/2);
+            //Console.WriteLine();
+            //Console.WriteLine("You healed up a bit!");
+            //Console.ReadLine();
+            //Console.Clear();
+        //}
 
-        void Skill(string role, int yourHP, int yourArmor, int yourMagic, int yourDamage, int enemyHP, int enemyArmor, int enemyMagic, int enemyDamage)
-        {
-            switch(role)
-            {
-                case "Paladin":
-                    {
-                        int currentTurn = _turnCount;
+        //void Skill(string role, int yourHP, int yourArmor, int yourMagic, int yourDamage, int enemyHP, int enemyArmor, int enemyMagic, int enemyDamage)
+        //{
+            //switch(role)
+            //{
+                //case "Paladin":
+                    //{
+                        //int currentTurn = _turnCount;
                         //while(currentTurn == _turnCount || currentTurn == _turnCount + 1)
                         //{
                             //yourArmor = yourArmor * 2;
                             //Attack(yourDamage, );
                         //}
-                        break;
-                    }
-                case "Warrior":
-                    {
+                        //break;
+                    //}
+                //case "Warrior":
+                    //{
 
-                        break;
-                    }
-                case "Cleric":
-                    {
-                        break;
-                    }
-            }
-        }
+                        //break;
+                    //}
+                //case "Cleric":
+                    //{
+                        //break;
+                    //}
+            //}
+        //}
 
     }
 }

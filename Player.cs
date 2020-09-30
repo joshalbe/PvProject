@@ -34,14 +34,29 @@ namespace PvProject
             Console.Clear();
         }
 
-		public virtual Skill() 
+		public Heal() 
 		{
-
+			_health += (_magic/2);
+			Console.WriteLine();
+            Console.WriteLine("You healed up a bit!");
+            Console.ReadLine();
+            Console.Clear();
 		}
 
-		public virtual Taunt() 
+		public virtual Skill() 
 		{
+			Console.WriteLine();
+			Console.WriteLine("You have no equipped skills!");
+			Console.ReadLine();
+            Console.Clear();
+		}
 
+		public virtual Taunt(Player enemy) 
+		{
+			Console.WriteLine();
+			Console.WriteLine(enemy._name + "'s mother was a hamster, and their father smelt of elderberries!");
+			Console.ReadLine();
+            Console.Clear();
 		}
 
 		public TakeDamage(double damage) 
