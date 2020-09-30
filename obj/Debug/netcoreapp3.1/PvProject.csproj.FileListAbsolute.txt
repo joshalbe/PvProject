@@ -9,3 +9,8 @@ C:\Users\s208068\source\repos\PvProject\PvProject\obj\Debug\netcoreapp3.1\PvProj
 C:\Users\s208068\source\repos\PvProject\PvProject\obj\Debug\netcoreapp3.1\PvProject.AssemblyInfo.cs
 C:\Users\s208068\source\repos\PvProject\PvProject\obj\Debug\netcoreapp3.1\PvProject.dll
 C:\Users\s208068\source\repos\PvProject\PvProject\obj\Debug\netcoreapp3.1\PvProject.pdb
+C:\Users\s208068\Source\Repos\PvProject\obj\Debug\netcoreapp3.1\PvProject.csprojAssemblyReference.cache
+C:\Users\s208068\Source\Repos\PvProject\obj\Debug\netcoreapp3.1\PvProject.AssemblyInfoInputs.cache
+C:\Users\s208068\Source\Repos\PvProject\obj\Debug\netcoreapp3.1\PvProject.AssemblyInfo.cs
+C:\Users\s208068\Source\Repos\PvProject\obj\Debug\netcoreapp3.1\PvProject.dll
+C:\Users\s208068\Source\Repos\PvProject\obj\Debug\netcoreapp3.1\PvProject.pdb
