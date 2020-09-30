@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\s208068\\source\\repos\\PvProject\\PvProject\\PvProject.csproj",
+      "projectUniqueName": "C:\\Users\\s208068\\source\\repos\\PvProject3\\PvProject.csproj",
       "projectName": "PvProject",
-      "projectPath": "C:\\Users\\s208068\\source\\repos\\PvProject\\PvProject\\PvProject.csproj",
+      "projectPath": "C:\\Users\\s208068\\source\\repos\\PvProject3\\PvProject.csproj",
       "packagesPath": "C:\\Users\\s208068\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\s208068\\source\\repos\\PvProject\\PvProject\\obj\\",
+      "outputPath": "C:\\Users\\s208068\\source\\repos\\PvProject3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\s208068\\AppData\\Roaming\\NuGet\\NuGet.Config",
