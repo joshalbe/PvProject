@@ -70,19 +70,24 @@ namespace PvProject
                 GetInputString(out input);
                 Console.Clear();
                 Console.WriteLine(input + ", is that right?");
-                string input2;
-                GetInputString(out input2);
-                if (input2 == "yes" || input2 == "Yes" || input2 == "YES")
+                char input2;
+                GetInputChar(out input2, "Yes", "No");
+                switch(input2)
                 {
-                    Console.Clear();
-                    Console.WriteLine("Alright!");
-                    _player1 = new Player(input);
-                    _choosing = false;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Please clarify your name.");
+                    case '1':
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Alright!");
+                            _player1 = new Player(input);
+                            _choosing = false;
+                            break;
+                        }
+                    case '2':
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Please clarify your name.");
+                            break;
+                        }
                 }
 
                 Console.WriteLine("Now, choose your combat class.");
@@ -119,19 +124,24 @@ namespace PvProject
                 GetInputString(out input);
                 Console.Clear();
                 Console.WriteLine(input + ", is that right?");
-                string input2;
-                GetInputString(out input2);
-                if (input2 == "yes" || input2 == "Yes" || input2 == "YES")
+                char input2;
+                GetInputChar(out input2, "Yes", "No");
+                switch (input2)
                 {
-                    Console.Clear();
-                    Console.WriteLine("Alright!");
-                    _player2 = new Player(input);
-                    _choosing = false;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Please clarify your name.");
+                    case '1':
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Alright!");
+                            _player2 = new Player(input);
+                            _choosing = false;
+                            break;
+                        }
+                    case '2':
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Please clarify your name.");
+                            break;
+                        }
                 }
 
                 Console.WriteLine("Now, choose your combat class.");

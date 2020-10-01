@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,31 +18,42 @@ namespace PvProject
 		protected int _skillPoints = 0;
 		protected int _gold = 0;
 
+		public bool _shielding;
+		public bool _enraged;
+		public bool _praying;
+		public int _skillTurn;
+
 		public Player(string name)
 		{
 			_name = name;
 		}
 
-		public void Attack(Player enemy)
+		public virtual void Attack(Player enemy)
         {
 			double damage = _damage;
-            damage -= enemy._armor / 2;
+            damage -= enemy.GetArmor() / 2;
             if(damage < 5)
             {
                 damage = 5;
             }
             enemy.TakeDamage(damage);
             Console.WriteLine();
-            Console.WriteLine("You did " + damage + " damage!");
+            Console.WriteLine(_name + " did " + damage + " damage!");
             Console.ReadLine();
             Console.Clear();
         }
 
 		public void Heal() 
 		{
+			double _prevHP = _health;
 			_health += (_magic/2);
+			if(_health > _maxHealth)
+            {
+				_health = _maxHealth;
+            }
+			double _amountHealed = _health - _prevHP;
 			Console.WriteLine();
-            Console.WriteLine("You healed up a bit!");
+            Console.WriteLine(_name + " healed up " + _amountHealed + "!");
             Console.ReadLine();
             Console.Clear();
 		}
@@ -53,6 +65,16 @@ namespace PvProject
 			Console.ReadLine();
             Console.Clear();
 		}
+
+		public virtual void SkillPart2(Player enemy)
+        {
+
+        }
+
+		public virtual void EndSkill()
+        {
+
+        }
 
 		public virtual void Taunt(Player enemy) 
 		{
@@ -85,9 +107,15 @@ namespace PvProject
 			return _name;
         }
 
+		public double GetArmor()
+        {
+			return _armor;
+        }
+
 		public void ReturnToFull()
         {
 			_health = _maxHealth;
+			_skillPoints++;
         }
 
 		public void WinReward()
