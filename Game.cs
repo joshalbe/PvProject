@@ -8,6 +8,8 @@ namespace PvProject
 {
     class Game
     {
+        Fight _fight;
+
         //Run the game
         public void Run()
         {
@@ -25,14 +27,14 @@ namespace PvProject
         {
             while (!_gameOver)
             {
-                FirstPlayerTurn(ref _health2, ref _health1);
-                SecondPlayerTurn(ref _health1, ref _health2);
+                Menu();
+                //_fight = new Fight(_player1, _player2);
             }
         }
 
         public void End()
         {
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine("That's all folks!");
         }
 
@@ -91,19 +93,19 @@ namespace PvProject
                     case '1':
                         {
                             //Paladin(ref _role1, ref _health1, ref _armor1, ref _magic1, ref _damage1);
-                            _player1 = new Paladin(_player1.name);
+                            _player1 = new Paladin(_player1.GetName());
                             break;
                         }
                     case '2':
                         {
                             //Warrior(ref _role1, ref _health1, ref _armor1, ref _magic1, ref _damage1);
-                            _player1 = new Warrior(_player1.name);
+                            _player1 = new Warrior(_player1.GetName());
                             break;
                         }
                     case '3':
                         {
                             //Cleric(ref _role1, ref _health1, ref _armor1, ref _magic1, ref _damage1);
-                            _player1 = new Cleric(_player1.name);
+                            _player1 = new Cleric(_player1.GetName());
                             break;
                         }
                 }
@@ -123,7 +125,7 @@ namespace PvProject
                 {
                     Console.Clear();
                     Console.WriteLine("Alright!");
-                    _name2 = new Player(input);
+                    _player2 = new Player(input);
                     _choosing = false;
                 }
                 else
@@ -140,25 +142,47 @@ namespace PvProject
                     case '1':
                         {
                             //Paladin(ref _role2, ref _health2, ref _armor2, ref _magic2, ref _damage2);
-                            _player2 = new Paladin(_player2.name);
+                            _player2 = new Paladin(_player2.GetName());
                             break;
                         }
                     case '2':
                         {
                             //Warrior(ref _role2, ref _health2, ref _armor2, ref _magic2, ref _damage2);
-                            _player2 = new Warrior(_player2.name);
+                            _player2 = new Warrior(_player2.GetName());
                             break;
                         }
                     case '3':
                         {
                             //Cleric(ref _role2, ref _health2, ref _armor2, ref _magic2, ref _damage2);
-                            _player2 = new Cleric(_player2.name);
+                            _player2 = new Cleric(_player2.GetName());
                             break;
                         }
                 }
             }
             Console.Clear();
             //Console.WriteLine(_name1 + " the " + _role1 + " vs. " + _name2 +" the " + _role2 + "! Start!");
+        }
+
+        void Menu()
+        {
+            Console.WriteLine("What would you like to do?");
+            char input;
+            GetInputChar(out input, "Visit the Shop", "Fight");
+            switch(input)
+            {
+                case '1':
+                    {
+                        //start the shop
+                        break;
+                    }
+                case '2':
+                    {
+                        //start a new fight
+                        _fight = new Fight(_player1, _player2);
+                        _fight.StartFight();
+                        break;
+                    }
+            }
         }
 
         void GetInputString(out string input)
@@ -197,88 +221,7 @@ namespace PvProject
             }
         }
 
-        void FirstPlayerTurn(ref int enemyHP, ref int yourHP)
-        {
-            _turnCount++;
-            if (enemyHP <= 0 && yourHP > 0)
-            {
-                _gameOver = true;
-                Console.WriteLine(_player1._name + " wins!");
-            }
-            else if (yourHP <= 0 && enemyHP > 0)
-            {
-                _gameOver = true;
-                Console.WriteLine(_player2._name + " wins!");
-            }
-            else
-            {
-                Console.WriteLine(_player1._name + ": " + _player1._health + "HP");
-                Console.WriteLine(_player2._name + ": " + _player2._health + "HP");
-                Console.WriteLine();
-
-                Console.WriteLine(_player1._name + ", you're up! What will you do?");
-                char input;
-                GetInputChar(out input, "Attack", "Heal", "Skill");
-                switch (input)
-                {
-                    case '1':
-                        {
-                            //Attack(_player1._damage, _player2._armor, ref enemyHP);
-                            _player1.Attack(_player2);
-                            break;
-                        }
-                    case '2':
-                        {
-                            //Heal(_player1._magic, ref yourHP);
-                            _player1.Heal();
-                            break;
-                        }
-                }
-            }
-        }
-
-        void SecondPlayerTurn(ref int enemyHP, ref int yourHP)
-        {
-            _turnCount++;
-            if (!_gameOver)
-            {
-                if (enemyHP <= 0 && yourHP > 0)
-                {
-                    _gameOver = true;
-                    Console.WriteLine(_player2._name + " wins!");
-                }
-                else if (yourHP <= 0 && enemyHP > 0)
-                {
-                    _gameOver = true;
-                    Console.WriteLine(_player1._name + " wins!");
-                }
-                else
-                {
-                    Console.WriteLine(_player1._name + ": " + _player1._health + "HP");
-                    Console.WriteLine(_player2._name + ": " + _player2._health + "HP");
-                    Console.WriteLine();
-
-                    Console.WriteLine(_player2.name + ", you're up! What will you do?");
-                    char input;
-                    GetInputChar(out input, "Attack", "Heal");
-                    switch (input)
-                    {
-                        case '1':
-                            {
-                                //Attack(_player2._damage, _player1._armor, ref enemyHP);
-                                _player2.Attack(_player1);
-                                break;
-                            }
-                        case '2':
-                            {
-                                //Heal(_player2._magic, ref yourHP);
-                                _player2.Heal();
-                                break;
-                            }
-                    }
-                }
-            }
-        }
+        
 
         //void Attack(int damage, int enemyArmor, ref int enemyHP)
         //{

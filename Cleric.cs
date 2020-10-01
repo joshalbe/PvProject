@@ -8,9 +8,10 @@ namespace PvProject
 {
 	public class Cleric : Player
 	{
-		public Cleric(string name)
+		public Cleric(string name) : base(name)
 		{
 			_name = name;
+			_maxHealth = 50.00;
 			_health = 50.00;
 			_armor = 40.00;
 			_damage = 10.00;

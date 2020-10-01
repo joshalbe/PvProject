@@ -9,17 +9,20 @@ namespace PvProject
 	public class Player
 	{
 		public string _name = "";
+		protected double _maxHealth = 100.00;
 		protected double _health = 100.00;
 		protected double _armor = 10.00;
 		protected double _damage = 1.00;
 		protected int _magic = 10;
+		protected int _skillPoints = 0;
+		protected int _gold = 0;
 
 		public Player(string name)
 		{
 			_name = name;
 		}
 
-		public Attack(Player enemy)
+		public void Attack(Player enemy)
         {
 			double damage = _damage;
             damage -= enemy._armor / 2;
@@ -34,7 +37,7 @@ namespace PvProject
             Console.Clear();
         }
 
-		public Heal() 
+		public void Heal() 
 		{
 			_health += (_magic/2);
 			Console.WriteLine();
@@ -43,7 +46,7 @@ namespace PvProject
             Console.Clear();
 		}
 
-		public virtual Skill() 
+		public virtual void Skill() 
 		{
 			Console.WriteLine();
 			Console.WriteLine("You have no equipped skills!");
@@ -51,7 +54,7 @@ namespace PvProject
             Console.Clear();
 		}
 
-		public virtual Taunt(Player enemy) 
+		public virtual void Taunt(Player enemy) 
 		{
 			Console.WriteLine();
 			Console.WriteLine(enemy._name + "'s mother was a hamster, and their father smelt of elderberries!");
@@ -59,14 +62,47 @@ namespace PvProject
             Console.Clear();
 		}
 
-		public TakeDamage(double damage) 
+		public void TakeDamage(double damage) 
 		{
 			_health -= damage;
 		}
 
-		public PrintStats() 
+		public void PrintStats() 
 		{
-
+			Console.WriteLine(_name + "   " + _skillPoints + "SP");
+			Console.WriteLine("HP: " + _health + "/" + _maxHealth);
+			Console.WriteLine("Armor: " + _armor);
+			Console.WriteLine("Power: " + _damage);
+			Console.WriteLine("Magic: " + _magic);
 		}
+		public double GetHP()
+        {
+			return _health;
+        }
+
+		public string GetName()
+        {
+			return _name;
+        }
+
+		public void ReturnToFull()
+        {
+			_health = _maxHealth;
+        }
+
+		public void WinReward()
+        {
+			_gold += 100;
+        }
+
+		public void LoseReward()
+        {
+			_gold += 10;
+        }
+
+		public void TieReward()
+        {
+			_gold += 50;
+        }
 	}
 }

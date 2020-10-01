@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\s208068\\.nuget\\packages\\": {}
+    "C:\\Users\\josha\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\s208068\\source\\repos\\PvProject3\\PvProject.csproj",
+      "projectUniqueName": "C:\\Users\\josha\\source\\repos\\PvProject4\\PvProject.csproj",
       "projectName": "PvProject",
-      "projectPath": "C:\\Users\\s208068\\source\\repos\\PvProject3\\PvProject.csproj",
-      "packagesPath": "C:\\Users\\s208068\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\s208068\\source\\repos\\PvProject3\\obj\\",
+      "projectPath": "C:\\Users\\josha\\source\\repos\\PvProject4\\PvProject.csproj",
+      "packagesPath": "C:\\Users\\josha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\josha\\source\\repos\\PvProject4\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\s208068\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\josha\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -58,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

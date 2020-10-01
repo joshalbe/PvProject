@@ -14,3 +14,16 @@ C:\Users\s208068\Source\Repos\PvProject\obj\Debug\netcoreapp3.1\PvProject.Assemb
 C:\Users\s208068\Source\Repos\PvProject\obj\Debug\netcoreapp3.1\PvProject.AssemblyInfo.cs
 C:\Users\s208068\Source\Repos\PvProject\obj\Debug\netcoreapp3.1\PvProject.dll
 C:\Users\s208068\Source\Repos\PvProject\obj\Debug\netcoreapp3.1\PvProject.pdb
+C:\Users\josha\source\repos\PvProject4\bin\Debug\netcoreapp3.1\PvProject.exe
+C:\Users\josha\source\repos\PvProject4\bin\Debug\netcoreapp3.1\PvProject.deps.json
+C:\Users\josha\source\repos\PvProject4\bin\Debug\netcoreapp3.1\PvProject.runtimeconfig.json
+C:\Users\josha\source\repos\PvProject4\bin\Debug\netcoreapp3.1\PvProject.runtimeconfig.dev.json
+C:\Users\josha\source\repos\PvProject4\bin\Debug\netcoreapp3.1\PvProject.dll
+C:\Users\josha\source\repos\PvProject4\bin\Debug\netcoreapp3.1\PvProject.pdb
+C:\Users\josha\source\repos\PvProject4\obj\Debug\netcoreapp3.1\PvProject.csprojAssemblyReference.cache
+C:\Users\josha\source\repos\PvProject4\obj\Debug\netcoreapp3.1\PvProject.AssemblyInfoInputs.cache
+C:\Users\josha\source\repos\PvProject4\obj\Debug\netcoreapp3.1\PvProject.AssemblyInfo.cs
+C:\Users\josha\source\repos\PvProject4\obj\Debug\netcoreapp3.1\PvProject.csproj.CoreCompileInputs.cache
+C:\Users\josha\source\repos\PvProject4\obj\Debug\netcoreapp3.1\PvProject.dll
+C:\Users\josha\source\repos\PvProject4\obj\Debug\netcoreapp3.1\PvProject.pdb
+C:\Users\josha\source\repos\PvProject4\obj\Debug\netcoreapp3.1\PvProject.genruntimeconfig.cache
