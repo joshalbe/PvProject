@@ -22,6 +22,7 @@ namespace PvProject
 		protected int _gold = 50;
 		public int _score = 0;
 
+		//Declare the player's inventory, which is empty at first
 		protected Item[] _inventory = new Item[1];
 
 		//Initialize the conditions pertaining to specific classes
@@ -129,6 +130,7 @@ namespace PvProject
 		{
 			//When hit, this subtracts the necessary damage from the player
 			_health -= damage;
+			//And declares how much damage they took
 			Console.WriteLine();
 			Console.WriteLine(enemy.GetName() + " did " + damage + " damage!");
 			Console.ReadLine();
@@ -149,7 +151,9 @@ namespace PvProject
 
 		public void AddItem(Item item)
         {
+			//Add the item to the player's inventory
 			_inventory[0] = item;
+			//Then add all of its stats to the player
 			_maxHealth += item._hpMod;
 			_health += item._hpMod;
 			_damage += item._strMod;
@@ -161,6 +165,7 @@ namespace PvProject
 
 		public void RemoveItem(Item item)
         {
+			//Remove all the item's stats from the player
 			_maxHealth -= item._hpMod;
 			_health -= item._hpMod;
 			_damage -= item._strMod;
@@ -168,6 +173,7 @@ namespace PvProject
 			_mana -= item._manaMod;
 			_magic -= item._magicMod;
 			_skillPoints -= item._skillMod;
+			//Then remove the item itself from the inventory
 			_inventory[0] = new Item("Empty", 0, 0, 0, 0, 0, 0, 0);
         }
 		public double GetHP()
@@ -190,27 +196,32 @@ namespace PvProject
 
 		public Item GetItem()
         {
+			//Return the player's equipped item
 			return _inventory[0];
         }
 
 		public int GetGold()
         {
+			//Return the player's gold
 			return _gold;
         }
 
 		public void SpendGold(int price)
         {
+			//Remove the gold that the player is spending
 			_gold -= price;
         }
 
 		public int GetScore()
         {
+			//Return the player's score
 			return _score;
         }
 
 		public void ReturnToFull()
         {
 			//Function to restore the player back to full HP, mana and skillpoints after a battle is over
+			//As well as remove the player's equipped item
 			RemoveItem(_inventory[0]);
 			_health = _maxHealth;
 			_mana = _magic;
@@ -221,6 +232,7 @@ namespace PvProject
         {
 			//Upon victory, grants the winner 100 gold
 			_gold += 100;
+			//As well as a nice score
 			_score += 300;
         }
 
@@ -228,6 +240,7 @@ namespace PvProject
         {
 			//Upon defeat, grants the loser 10 gold
 			_gold += 10;
+			//And at least something
 			_score += 100;
         }
 
@@ -235,6 +248,7 @@ namespace PvProject
         {
 			//Upon the code breaking and a tied result, both players gain 50 gold
 			_gold += 50;
+			//And a bit of score
 			_score += 200;
         }
 	}

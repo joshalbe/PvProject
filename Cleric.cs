@@ -123,6 +123,7 @@ namespace PvProject
 				//Take damage as usual
 				_health -= damage;
 			}
+			//Announce the damage taken
 			Console.WriteLine();
 			Console.WriteLine(enemy.GetName() + " did " + damage + " damage!");
 			Console.ReadLine();

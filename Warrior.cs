@@ -45,11 +45,6 @@ namespace PvProject
 			}
 			//Make the enemy take the determined damage
 			enemy.TakeDamage(this, damage);
-			//And announce the damage taken
-			Console.WriteLine();
-			Console.WriteLine(_name + " did " + damage + " damage!");
-			Console.ReadLine();
-			Console.Clear();
 		}
 
         public override void Skill()

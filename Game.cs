@@ -9,7 +9,7 @@ namespace PvProject
 {
     class Game
     {
-        //Intialize an instance of a fight
+        //Intialize an instance of a fight, as well as the shop
         Fight _fight;
         Shop _shop;
 
@@ -224,6 +224,7 @@ namespace PvProject
                     }
                 case '3':
                     {
+                        //Saves the high score of the players by writing it to a text file
                         Console.Clear();
                         Console.WriteLine("Your high score has been saved!");
                         SaveScore("HighScore.txt");
@@ -232,6 +233,7 @@ namespace PvProject
                     }
                 case '4':
                     {
+                        //Loads up the previously saved high scores from the text file
                         Console.Clear();
                         Console.WriteLine("Here's the previous high score!");
                         LoadScore("HighScore.txt");
@@ -240,6 +242,7 @@ namespace PvProject
                     }
                 case '5':
                     {
+                        //Ends the game
                         _gameOver = true;
                         break;
                     }
@@ -301,28 +304,41 @@ namespace PvProject
 
         void SaveScore(string path)
         {
+            //Create a file to write data within
             StreamWriter playFile = File.CreateText(path);
 
-
+            //Decide which player had the best score
             if(_player1.GetScore() > _player2.GetScore())
             {
+                //If Player 1 had a higher score, record their name, class and score
                 playFile.WriteLine(_player1.GetName());
                 playFile.WriteLine(_player1._role);
                 playFile.WriteLine(_player1.GetScore());
             }
-            else
+            else if(_player2.GetScore() > _player1.GetScore())
             {
+                //If Player 2 had a higher score, record their name, class and score
                 playFile.WriteLine(_player2.GetName());
                 playFile.WriteLine(_player2._role);
                 playFile.WriteLine(_player2.GetScore());
             }
+            else
+            {
+                //If neither came out on top, record both of their names, classes and their shared score
+                playFile.WriteLine(_player1.GetName() + " and " + _player2.GetName());
+                playFile.WriteLine(_player1._role + " and " + _player2._role);
+                playFile.WriteLine(_player1.GetScore());
+            }
+            //Close the file
             playFile.Close();
         }
 
         void LoadScore(string path)
         {
+            //Create a reader to be able to retrieve the data
             StreamReader reader = File.OpenText(path);
 
+            //Display the name, class and score of the previously saved high score
             Console.WriteLine("Name: " + reader.ReadLine());
             Console.WriteLine("Class: " + reader.ReadLine());
             Console.WriteLine("Score: " + reader.ReadLine());
