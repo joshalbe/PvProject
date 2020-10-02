@@ -10,6 +10,7 @@ namespace PvProject
     {
         //Intialize an instance of a fight
         Fight _fight;
+        Shop _shop;
 
         //Run the game
         public void Run()
@@ -192,6 +193,8 @@ namespace PvProject
             }
             //Clear out any clutter
             Console.Clear();
+            //Initialize the shop for the newly created players
+            _shop = new Shop(_player1, _player2);
         }
 
         //Function for the menu, or home screen
@@ -206,6 +209,7 @@ namespace PvProject
                 case '1':
                     {
                         //start the shop
+                        _shop.Menu();
                         break;
                     }
                 case '2':

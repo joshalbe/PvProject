@@ -19,6 +19,9 @@ namespace PvProject
 		protected int _mana = 10;
 		protected int _skillPoints = 0;
 		protected int _gold = 50;
+		public int _score = 0;
+
+		protected Item[] _inventory = new Item[1];
 
 		//Initialize the conditions pertaining to specific classes
 		public bool _shielding;
@@ -135,11 +138,34 @@ namespace PvProject
 		{
 			//The stats act as a battle display to keep the players updated on their various stats
 			Console.WriteLine(_name + "   " + _skillPoints + "SP");
+			Console.WriteLine("(" + _inventory[0]._name + ")");
 			Console.WriteLine("HP: " + _health + "/" + _maxHealth);
 			Console.WriteLine("Armor: " + _armor);
 			Console.WriteLine("Power: " + _damage);
 			Console.WriteLine("Magic: " + _mana + "/" + _magic);
 		}
+
+		public void AddItem(Item item)
+        {
+			_inventory[0] = item;
+			_health += item._hpMod;
+			_damage += item._strMod;
+			_armor += item._armorMod;
+			_mana += item._manaMod;
+			_magic += item._magicMod;
+			_skillPoints += item._skillMod;
+        }
+
+		public void RemoveItem(Item item)
+        {
+			_health -= item._hpMod;
+			_damage -= item._strMod;
+			_armor -= item._armorMod;
+			_mana -= item._manaMod;
+			_magic -= item._magicMod;
+			_skillPoints -= item._skillMod;
+			_inventory[0] = new Item("Empty", 0, 0, 0, 0, 0, 0, 0);
+        }
 		public double GetHP()
         {
 			//Function to return the HP value of the player
@@ -158,30 +184,49 @@ namespace PvProject
 			return _armor;
         }
 
+		public Item GetItem()
+        {
+			return _inventory[0];
+        }
+
+		public int GetGold()
+        {
+			return _gold;
+        }
+
+		public void SpendGold(int price)
+        {
+			_gold -= price;
+        }
+
 		public void ReturnToFull()
         {
 			//Function to restore the player back to full HP, mana and skillpoints after a battle is over
 			_health = _maxHealth;
 			_mana = _magic;
 			_skillPoints = 1;
+			RemoveItem(_inventory[0]);
         }
 
 		public void WinReward()
         {
 			//Upon victory, grants the winner 100 gold
 			_gold += 100;
+			_score += 300;
         }
 
 		public void LoseReward()
         {
 			//Upon defeat, grants the loser 10 gold
 			_gold += 10;
+			_score += 100;
         }
 
 		public void TieReward()
         {
 			//Upon the code breaking and a tied result, both players gain 50 gold
 			_gold += 50;
+			_score += 200;
         }
 	}
 }
