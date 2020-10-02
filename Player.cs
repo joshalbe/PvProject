@@ -9,127 +9,178 @@ namespace PvProject
 {
 	public class Player
 	{
+		//Initialize the Player's stats and maximums
 		public string _name = "";
 		protected double _maxHealth = 100.00;
 		protected double _health = 100.00;
 		protected double _armor = 10.00;
 		protected double _damage = 1.00;
 		protected int _magic = 10;
+		protected int _mana = 10;
 		protected int _skillPoints = 0;
-		protected int _gold = 0;
+		protected int _gold = 50;
 
+		//Initialize the conditions pertaining to specific classes
 		public bool _shielding;
 		public bool _enraged;
 		public bool _praying;
 		public int _skillTurn;
 
+		//Constructor for the player
 		public Player(string name)
 		{
+			//Accept input as the name
 			_name = name;
 		}
 
+		//Function to attack the enemy
 		public virtual void Attack(Player enemy)
         {
+			//First take the damage stat as a base
 			double damage = _damage;
+			//Calculate it against the enemy's defense
             damage -= enemy.GetArmor() / 2;
+			//If the damage is too little
             if(damage < 5)
             {
+				//Make it the damage minimum
                 damage = 5;
             }
+			//Make the enemy take the necessary damage
             enemy.TakeDamage(damage);
+			//Declare the damage that was dealt
             Console.WriteLine();
             Console.WriteLine(_name + " did " + damage + " damage!");
             Console.ReadLine();
             Console.Clear();
         }
 
-		public void Heal() 
+		//Function to heal the player
+		public virtual void Heal() 
 		{
-			double _prevHP = _health;
-			_health += (_magic/2);
-			if(_health > _maxHealth)
+			//Check that there's enough mana to heal
+			if(_mana <= 0)
             {
-				_health = _maxHealth;
+				//If there isn't let the player know
+				Console.WriteLine("You don't have enough mana to heal!");
             }
-			double _amountHealed = _health - _prevHP;
-			Console.WriteLine();
-            Console.WriteLine(_name + " healed up " + _amountHealed + "!");
-            Console.ReadLine();
-            Console.Clear();
+			//If there is, then proceed
+			else
+            {
+				//Subtract the used mana
+				_mana -= 5;
+				//Mark what the HP was at before healing
+				double _prevHP = _health;
+				//Heal the player according to the formula
+				_health += (_magic / 2);
+				//If the healing would bring the player above their max health
+				if (_health > _maxHealth)
+				{
+					//Set the HP equal to their max health
+					_health = _maxHealth;
+				}
+				//Subtract the previous HP from the current to find out how much they healed
+				double _amountHealed = _health - _prevHP;
+				//Announce how much the player healed
+				Console.WriteLine();
+				Console.WriteLine(_name + " healed up " + _amountHealed + "!");
+				Console.ReadLine();
+				Console.Clear();
+			}
+
+			
 		}
 
+		//Function for the player's skill
 		public virtual void Skill() 
 		{
+			//Classless players wouldn't have a skill, so it tells them this
 			Console.WriteLine();
 			Console.WriteLine("You have no equipped skills!");
 			Console.ReadLine();
             Console.Clear();
 		}
 
+		//Function for the part of a skill that would activate on an enemy's turn
 		public virtual void SkillPart2(Player enemy)
         {
-
+			//Classless players don't have skills, so there's nothing that would activate here
         }
 
+		//Function to end the Skill
 		public virtual void EndSkill()
         {
-
+			//Classless players have no skill to end, so nothing would need to end
         }
 
+		//Function to taunt the enemy player
 		public virtual void Taunt(Player enemy) 
 		{
+			//Declares an insult with the full knowledge that this takes their entire turn
 			Console.WriteLine();
 			Console.WriteLine(enemy._name + "'s mother was a hamster, and their father smelt of elderberries!");
 			Console.ReadLine();
             Console.Clear();
 		}
 
-		public void TakeDamage(double damage) 
+		//Function to make the player take damage
+		public virtual void TakeDamage(double damage) 
 		{
+			//When hit, this subtracts the necessary damage from the player
 			_health -= damage;
 		}
 
+		//Fucntion to print out all of the necessary stats of the player
 		public void PrintStats() 
 		{
+			//The stats act as a battle display to keep the players updated on their various stats
 			Console.WriteLine(_name + "   " + _skillPoints + "SP");
 			Console.WriteLine("HP: " + _health + "/" + _maxHealth);
 			Console.WriteLine("Armor: " + _armor);
 			Console.WriteLine("Power: " + _damage);
-			Console.WriteLine("Magic: " + _magic);
+			Console.WriteLine("Magic: " + _mana + "/" + _magic);
 		}
 		public double GetHP()
         {
+			//Function to return the HP value of the player
 			return _health;
         }
 
 		public string GetName()
         {
+			//Function to return the name value of the player
 			return _name;
         }
 
 		public double GetArmor()
         {
+			//Function to return the armor value of the player
 			return _armor;
         }
 
 		public void ReturnToFull()
         {
+			//Function to restore the player back to full HP, mana and skillpoints after a battle is over
 			_health = _maxHealth;
-			_skillPoints++;
+			_mana = _magic;
+			_skillPoints = 1;
         }
 
 		public void WinReward()
         {
+			//Upon victory, grants the winner 100 gold
 			_gold += 100;
         }
 
 		public void LoseReward()
         {
+			//Upon defeat, grants the loser 10 gold
 			_gold += 10;
         }
 
 		public void TieReward()
         {
+			//Upon the code breaking and a tied result, both players gain 50 gold
 			_gold += 50;
         }
 	}

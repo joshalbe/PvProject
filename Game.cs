@@ -8,67 +8,62 @@ namespace PvProject
 {
     class Game
     {
+        //Intialize an instance of a fight
         Fight _fight;
 
         //Run the game
         public void Run()
         {
+            //Start the game
             Start();
+            //Go through the paces of the bulk of the game
             Update();
+            //End the game
             End();
         }
 
         public void Start()
         {
+            //Function to start the game
             StartGame();
         }
 
         public void Update()
         {
+            //While the players still want to play
             while (!_gameOver)
             {
+                //make sure it always returns to the menu
                 Menu();
-                //_fight = new Fight(_player1, _player2);
             }
         }
 
         public void End()
         {
-            //Console.Clear();
+            //Parting message
             Console.WriteLine("That's all folks!");
         }
 
-        //int _health1 = 10;
-        //string _name1 = " ";
-        //int _armor1 = 1;
-        //int _magic1 = 1;
-        //int _damage1 = 3;
-        //string _role1 = "Player";
-
-        //int _health2 = 10;
-        //string _name2 = "";
-        //int _armor2 = 1;
-        //int _magic2 = 1;
-        //int _damage2 = 3;
-        //string _role2 = "Player";
-
-        int _turnCount = 0;
-
+        //Initialize the choosing process, the gameover option, and the players
         bool _choosing = true;
         bool _gameOver = false;
-
         Player _player1;
         Player _player2;
         
+        //Function to start the game
         void StartGame()
         {
+            //While the first player is still choosing their various details
             while (_choosing)
             {
+                //Introduce them to the game
                 Console.WriteLine("Welcome to the Battle Arena!");
+                //Prompt the first player to give their name
                 Console.WriteLine("Player 1, please give your name!");
                 string input;
                 GetInputString(out input);
                 Console.Clear();
+                //Then confirm their name
                 Console.WriteLine(input + ", is that right?");
                 char input2;
                 GetInputChar(out input2, "Yes", "No");
@@ -76,6 +71,7 @@ namespace PvProject
                 {
                     case '1':
                         {
+                            //If they're ready to move on, intialize their player
                             Console.Clear();
                             Console.WriteLine("Alright!");
                             _player1 = new Player(input);
@@ -84,45 +80,60 @@ namespace PvProject
                         }
                     case '2':
                         {
+                            //If they made a mistake
                             Console.Clear();
                             Console.WriteLine("Please clarify your name.");
                             break;
                         }
                 }
-
+            }
+            //Return the choosing condition to true for the next choice
+            _choosing = true;
+            //While the player is choosing their class
+            while(_choosing)
+            {
+                //Prompt the first player to choose their class
                 Console.WriteLine("Now, choose your combat class.");
                 char input3;
                 GetInputChar(out input3, "Paladin", "Warrior", "Cleric");
-                switch(input3)
+                switch (input3)
                 {
                     case '1':
                         {
-                            //Paladin(ref _role1, ref _health1, ref _armor1, ref _magic1, ref _damage1);
+                            //If they choose the Paladin class, initalize the player as a Paladin
                             _player1 = new Paladin(_player1.GetName());
+                            _choosing = false;
                             break;
                         }
                     case '2':
                         {
-                            //Warrior(ref _role1, ref _health1, ref _armor1, ref _magic1, ref _damage1);
+                            //If they choose the Warrior class, intialize the player as a Warrior
                             _player1 = new Warrior(_player1.GetName());
+                            _choosing = false;
                             break;
                         }
                     case '3':
                         {
-                            //Cleric(ref _role1, ref _health1, ref _armor1, ref _magic1, ref _damage1);
+                            //If they choose the Cleric class, initialize the player as a Cleric
                             _player1 = new Cleric(_player1.GetName());
+                            _choosing = false;
                             break;
                         }
                 }
             }
+
+            //Return the choosing condition to true for the second player
             _choosing = true;
+            //And while they're choosing
             while (_choosing)
             {
+                //Prompt the second player for their name
                 Console.Clear();
                 Console.WriteLine("Player 2, your turn! Please give your name.");
                 string input;
                 GetInputString(out input);
                 Console.Clear();
+                //Confirm their name
                 Console.WriteLine(input + ", is that right?");
                 char input2;
                 GetInputChar(out input2, "Yes", "No");
@@ -130,6 +141,7 @@ namespace PvProject
                 {
                     case '1':
                         {
+                            //if it's right, then initialize them as a player and move on
                             Console.Clear();
                             Console.WriteLine("Alright!");
                             _player2 = new Player(input);
@@ -138,12 +150,18 @@ namespace PvProject
                         }
                     case '2':
                         {
+                            //If it's not correct, return them to the prompt
                             Console.Clear();
                             Console.WriteLine("Please clarify your name.");
                             break;
                         }
                 }
-
+            }
+            //yet again set the choosing
+            _choosing = true;
+            while(_choosing)
+            {
+                //prompt player 2 for their class
                 Console.WriteLine("Now, choose your combat class.");
                 char input3;
                 GetInputChar(out input3, "Paladin", "Warrior", "Cleric");
@@ -151,30 +169,35 @@ namespace PvProject
                 {
                     case '1':
                         {
-                            //Paladin(ref _role2, ref _health2, ref _armor2, ref _magic2, ref _damage2);
+                            //Initialize the player as a Paladin and signify that they're done choosing
                             _player2 = new Paladin(_player2.GetName());
+                            _choosing = false;
                             break;
                         }
                     case '2':
                         {
-                            //Warrior(ref _role2, ref _health2, ref _armor2, ref _magic2, ref _damage2);
+                            //Initialize the player as a Warrior and signify that they're done choosing
                             _player2 = new Warrior(_player2.GetName());
+                            _choosing = false;
                             break;
                         }
                     case '3':
                         {
-                            //Cleric(ref _role2, ref _health2, ref _armor2, ref _magic2, ref _damage2);
+                            //Initialize the player as a Cleric and signify that they're done choosing
                             _player2 = new Cleric(_player2.GetName());
+                            _choosing = false;
                             break;
                         }
                 }
             }
+            //Clear out any clutter
             Console.Clear();
-            //Console.WriteLine(_name1 + " the " + _role1 + " vs. " + _name2 +" the " + _role2 + "! Start!");
         }
 
+        //Function for the menu, or home screen
         void Menu()
         {
+            //Prompt the players for a course of action
             Console.WriteLine("What would you like to do?");
             char input;
             GetInputChar(out input, "Visit the Shop", "Fight");
@@ -187,7 +210,7 @@ namespace PvProject
                     }
                 case '2':
                     {
-                        //start a new fight
+                        //start a new fight with the players
                         _fight = new Fight(_player1, _player2);
                         _fight.StartFight();
                         break;
@@ -197,7 +220,7 @@ namespace PvProject
 
         void GetInputString(out string input)
         {
-            input = "";
+            //Accept a string as input for later use
             Console.Write("> ");
             input = Console.ReadLine();
         }
@@ -230,57 +253,5 @@ namespace PvProject
                 input = Console.ReadKey().KeyChar;
             }
         }
-
-        
-
-        //void Attack(int damage, int enemyArmor, ref int enemyHP)
-        //{
-            //damage -= enemyArmor / 2;
-            //if(damage < 5)
-            //{
-                //damage = 5;
-            //}
-            //enemyHP -= damage;
-            //Console.WriteLine();
-            //Console.WriteLine("You did " + damage + " damage!");
-            //Console.ReadLine();
-            //Console.Clear();
-        //}
-
-        //void Heal(int magic, ref int yourHP)
-        //{
-            //yourHP += (magic/2);
-            //Console.WriteLine();
-            //Console.WriteLine("You healed up a bit!");
-            //Console.ReadLine();
-            //Console.Clear();
-        //}
-
-        //void Skill(string role, int yourHP, int yourArmor, int yourMagic, int yourDamage, int enemyHP, int enemyArmor, int enemyMagic, int enemyDamage)
-        //{
-            //switch(role)
-            //{
-                //case "Paladin":
-                    //{
-                        //int currentTurn = _turnCount;
-                        //while(currentTurn == _turnCount || currentTurn == _turnCount + 1)
-                        //{
-                            //yourArmor = yourArmor * 2;
-                            //Attack(yourDamage, );
-                        //}
-                        //break;
-                    //}
-                //case "Warrior":
-                    //{
-
-                        //break;
-                    //}
-                //case "Cleric":
-                    //{
-                        //break;
-                    //}
-            //}
-        //}
-
     }
 }
