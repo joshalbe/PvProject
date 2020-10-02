@@ -13,6 +13,7 @@ namespace PvProject
 		{
 			//Set all the necessary stats
 			_name = name;
+			_role = "Paladin";
 			_maxHealth = 75.00;
 			_health = 75.00;
 			_armor = 45.00;

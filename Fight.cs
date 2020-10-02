@@ -70,6 +70,7 @@ namespace PvProject
                 _fightOver = true;
                 //and declare the victor
                 Console.WriteLine(_player1._name + " wins!");
+                Console.ReadLine();
             }
             //Determine whether Player 1 was defeated in the last round
             else if (yourHP <= 0 && enemyHP > 0)
@@ -78,6 +79,7 @@ namespace PvProject
                 _fightOver = true;
                 //and declare the victor
                 Console.WriteLine(_player2._name + " wins!");
+                Console.ReadLine();
             }
             //If nobody's defeated, then continue the fight
             else
@@ -170,6 +172,7 @@ namespace PvProject
                     _fightOver = true;
                     //And declare a victor
                     Console.WriteLine(_player2._name + " wins!");
+                    Console.ReadLine();
                 }
                 //Check if Player 2 was defeated
                 else if (yourHP <= 0 && enemyHP > 0)
@@ -178,6 +181,7 @@ namespace PvProject
                     _fightOver = true;
                     //and declare a victor
                     Console.WriteLine(_player1._name + " wins!");
+                    Console.ReadLine();
                 }
                 //If nobody's beaten yet, continue on
                 else

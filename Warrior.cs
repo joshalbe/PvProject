@@ -13,6 +13,7 @@ namespace PvProject
 		{
 			//Set the necessary stats
 			_name = name;
+			_role = "Warrior";
 			_maxHealth = 85.00;
 			_health = 85.00;
 			_armor = 10.00;
@@ -43,10 +44,10 @@ namespace PvProject
 				damage = 5;
 			}
 			//Make the enemy take the determined damage
-			enemy.TakeDamage(damage);
+			enemy.TakeDamage(this, damage);
 			//And announce the damage taken
 			Console.WriteLine();
-			Console.WriteLine("You did " + damage + " damage!");
+			Console.WriteLine(_name + " did " + damage + " damage!");
 			Console.ReadLine();
 			Console.Clear();
 		}

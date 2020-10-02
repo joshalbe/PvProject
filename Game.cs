@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace PvProject
 {
@@ -42,6 +43,7 @@ namespace PvProject
         public void End()
         {
             //Parting message
+            Console.Clear();
             Console.WriteLine("That's all folks!");
         }
 
@@ -201,9 +203,10 @@ namespace PvProject
         void Menu()
         {
             //Prompt the players for a course of action
+            Console.Clear();
             Console.WriteLine("What would you like to do?");
             char input;
-            GetInputChar(out input, "Visit the Shop", "Fight");
+            GetInputChar(out input, "Visit the Shop", "Fight", "Save High Score", "Previous High Score", "Exit Game");
             switch(input)
             {
                 case '1':
@@ -217,6 +220,27 @@ namespace PvProject
                         //start a new fight with the players
                         _fight = new Fight(_player1, _player2);
                         _fight.StartFight();
+                        break;
+                    }
+                case '3':
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Your high score has been saved!");
+                        SaveScore("HighScore.txt");
+                        Console.ReadLine();
+                        break;
+                    }
+                case '4':
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Here's the previous high score!");
+                        LoadScore("HighScore.txt");
+                        Console.ReadLine();
+                        break;
+                    }
+                case '5':
+                    {
+                        _gameOver = true;
                         break;
                     }
             }
@@ -256,6 +280,52 @@ namespace PvProject
                 Console.Write("> ");
                 input = Console.ReadKey().KeyChar;
             }
+        }
+
+        void GetInputChar(out char input, string option1, string option2, string option3, string option4, string option5)
+        {
+            //Initialize input
+            input = ' ';
+            //Loop until the player enters a valid input
+            while (input != '1' && input != '2' && input != '3' && input != '4' && input != '5')
+            {
+                Console.WriteLine("1." + option1);
+                Console.WriteLine("2." + option2);
+                Console.WriteLine("3." + option3);
+                Console.WriteLine("4." + option4);
+                Console.WriteLine("5." + option5);
+                Console.Write("> ");
+                input = Console.ReadKey().KeyChar;
+            }
+        }
+
+        void SaveScore(string path)
+        {
+            StreamWriter playFile = File.CreateText(path);
+
+
+            if(_player1.GetScore() > _player2.GetScore())
+            {
+                playFile.WriteLine(_player1.GetName());
+                playFile.WriteLine(_player1._role);
+                playFile.WriteLine(_player1.GetScore());
+            }
+            else
+            {
+                playFile.WriteLine(_player2.GetName());
+                playFile.WriteLine(_player2._role);
+                playFile.WriteLine(_player2.GetScore());
+            }
+            playFile.Close();
+        }
+
+        void LoadScore(string path)
+        {
+            StreamReader reader = File.OpenText(path);
+
+            Console.WriteLine("Name: " + reader.ReadLine());
+            Console.WriteLine("Class: " + reader.ReadLine());
+            Console.WriteLine("Score: " + reader.ReadLine());
         }
     }
 }

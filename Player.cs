@@ -11,6 +11,7 @@ namespace PvProject
 	{
 		//Initialize the Player's stats and maximums
 		public string _name = "";
+		public string _role = "";
 		protected double _maxHealth = 100.00;
 		protected double _health = 100.00;
 		protected double _armor = 10.00;
@@ -50,12 +51,7 @@ namespace PvProject
                 damage = 5;
             }
 			//Make the enemy take the necessary damage
-            enemy.TakeDamage(damage);
-			//Declare the damage that was dealt
-            Console.WriteLine();
-            Console.WriteLine(_name + " did " + damage + " damage!");
-            Console.ReadLine();
-            Console.Clear();
+            enemy.TakeDamage(this, damage);
         }
 
 		//Function to heal the player
@@ -65,7 +61,9 @@ namespace PvProject
 			if(_mana <= 0)
             {
 				//If there isn't let the player know
+				Console.Clear();
 				Console.WriteLine("You don't have enough mana to heal!");
+				Console.ReadLine();
             }
 			//If there is, then proceed
 			else
@@ -127,10 +125,14 @@ namespace PvProject
 		}
 
 		//Function to make the player take damage
-		public virtual void TakeDamage(double damage) 
+		public virtual void TakeDamage(Player enemy, double damage) 
 		{
 			//When hit, this subtracts the necessary damage from the player
 			_health -= damage;
+			Console.WriteLine();
+			Console.WriteLine(enemy.GetName() + " did " + damage + " damage!");
+			Console.ReadLine();
+			Console.Clear();
 		}
 
 		//Fucntion to print out all of the necessary stats of the player
@@ -148,6 +150,7 @@ namespace PvProject
 		public void AddItem(Item item)
         {
 			_inventory[0] = item;
+			_maxHealth += item._hpMod;
 			_health += item._hpMod;
 			_damage += item._strMod;
 			_armor += item._armorMod;
@@ -158,6 +161,7 @@ namespace PvProject
 
 		public void RemoveItem(Item item)
         {
+			_maxHealth -= item._hpMod;
 			_health -= item._hpMod;
 			_damage -= item._strMod;
 			_armor -= item._armorMod;
@@ -199,13 +203,18 @@ namespace PvProject
 			_gold -= price;
         }
 
+		public int GetScore()
+        {
+			return _score;
+        }
+
 		public void ReturnToFull()
         {
 			//Function to restore the player back to full HP, mana and skillpoints after a battle is over
+			RemoveItem(_inventory[0]);
 			_health = _maxHealth;
 			_mana = _magic;
 			_skillPoints = 1;
-			RemoveItem(_inventory[0]);
         }
 
 		public void WinReward()

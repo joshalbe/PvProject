@@ -13,6 +13,7 @@ namespace PvProject
 		{
 			//Set all necessary stats
 			_name = name;
+			_role = "Cleric";
 			_maxHealth = 65.00;
 			_health = 65.00;
 			_armor = 40.00;
@@ -33,9 +34,9 @@ namespace PvProject
 			if (_praying == true)
 			{
 				//Reduce the enemy's armor effectiveness, and increase damage at the cost of some mana
-				damage = damage + _magic;
+				damage = damage + (_magic / 2);
 				_mana -= 5;
-				damage -= (enemy.GetArmor() / 4);
+				damage -= (enemy.GetArmor() / 2);
             }
 			//If the skill condition's not active
 			else
@@ -51,11 +52,7 @@ namespace PvProject
 				damage = 5;
 			}
 			//Make the enemy take the damage, and declare the amount done
-			enemy.TakeDamage(damage);
-			Console.WriteLine();
-			Console.WriteLine(_name + " did " + damage + " damage!");
-			Console.ReadLine();
-			Console.Clear();
+			enemy.TakeDamage(this, damage);
 		}
 
 		//Unique function for a Cleric's healing
@@ -106,13 +103,18 @@ namespace PvProject
 		}
 
 		//Unique function for the Cleric taking damage
-        public override void TakeDamage(double damage)
+        public override void TakeDamage(Player enemy, double damage)
         {
 			//If skill condition is active
 			if(_praying == true)
             {
 				//Take less damage than normal at the cost of some mana
-				_health -= (damage - _mana);
+				damage -= _mana;
+				if(damage < 5)
+                {
+					damage = 5;
+                }
+				_health -= damage;
 				_mana -= 5;
             }
 			//If the skill's not active
@@ -121,6 +123,10 @@ namespace PvProject
 				//Take damage as usual
 				_health -= damage;
 			}
+			Console.WriteLine();
+			Console.WriteLine(enemy.GetName() + " did " + damage + " damage!");
+			Console.ReadLine();
+			Console.Clear();
 		}
 
         public override void Skill()

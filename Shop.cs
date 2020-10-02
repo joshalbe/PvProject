@@ -37,7 +37,7 @@ namespace PvProject
             while(_shopping)
             {
                 Console.Clear();
-                Console.WriteLine("Hello, welcome to the Shop! Which player is buying first?");
+                Console.WriteLine("Hello, welcome to the Shop! Which player is buying?");
                 char input;
                 GetInputChar(out input, _player1.GetName(), _player2.GetName(), "Leave the shop");
                 switch (input)
