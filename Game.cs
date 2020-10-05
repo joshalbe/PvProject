@@ -52,17 +52,31 @@ namespace PvProject
         bool _gameOver = false;
         Player _player1;
         Player _player2;
+        int _playerCount = 0;
         
         //Function to start the game
         void StartGame()
         {
-            //While the first player is still choosing their various details
+            //Initiate the players
+            InitiatePlayer(ref _player1);
+            InitiatePlayer(ref _player2);
+
+            //Initialize the shop for the newly created players
+            _shop = new Shop(_player1, _player2);
+        }
+
+        void InitiatePlayer(ref Player player)
+        {
+            //Increment the player count
+            _playerCount++;
+
+            //While the player is still choosing their various details
             while (_choosing)
             {
                 //Introduce them to the game
                 Console.WriteLine("Welcome to the Battle Arena!");
-                //Prompt the first player to give their name
-                Console.WriteLine("Player 1, please give your name!");
+                //Prompt the player to give their name
+                Console.WriteLine("Player " + _playerCount + ", please give your name!");
                 string input;
                 GetInputString(out input);
                 Console.Clear();
@@ -70,14 +84,14 @@ namespace PvProject
                 Console.WriteLine(input + ", is that right?");
                 char input2;
                 GetInputChar(out input2, "Yes", "No");
-                switch(input2)
+                switch (input2)
                 {
                     case '1':
                         {
                             //If they're ready to move on, intialize their player
                             Console.Clear();
                             Console.WriteLine("Alright!");
-                            _player1 = new Player(input);
+                            player = new Player(input);
                             _choosing = false;
                             break;
                         }
@@ -93,9 +107,9 @@ namespace PvProject
             //Return the choosing condition to true for the next choice
             _choosing = true;
             //While the player is choosing their class
-            while(_choosing)
+            while (_choosing)
             {
-                //Prompt the first player to choose their class
+                //Prompt the player to choose their class
                 Console.WriteLine("Now, choose your combat class.");
                 char input3;
                 GetInputChar(out input3, "Paladin", "Warrior", "Cleric");
@@ -104,99 +118,30 @@ namespace PvProject
                     case '1':
                         {
                             //If they choose the Paladin class, initalize the player as a Paladin
-                            _player1 = new Paladin(_player1.GetName());
+                            player = new Paladin(player.GetName());
                             _choosing = false;
                             break;
                         }
                     case '2':
                         {
                             //If they choose the Warrior class, intialize the player as a Warrior
-                            _player1 = new Warrior(_player1.GetName());
+                            player = new Warrior(player.GetName());
                             _choosing = false;
                             break;
                         }
                     case '3':
                         {
                             //If they choose the Cleric class, initialize the player as a Cleric
-                            _player1 = new Cleric(_player1.GetName());
+                            player = new Cleric(player.GetName());
                             _choosing = false;
                             break;
                         }
                 }
             }
-
-            //Return the choosing condition to true for the second player
+            //Return the choosing condition to true for potential next players
             _choosing = true;
-            //And while they're choosing
-            while (_choosing)
-            {
-                //Prompt the second player for their name
-                Console.Clear();
-                Console.WriteLine("Player 2, your turn! Please give your name.");
-                string input;
-                GetInputString(out input);
-                Console.Clear();
-                //Confirm their name
-                Console.WriteLine(input + ", is that right?");
-                char input2;
-                GetInputChar(out input2, "Yes", "No");
-                switch (input2)
-                {
-                    case '1':
-                        {
-                            //if it's right, then initialize them as a player and move on
-                            Console.Clear();
-                            Console.WriteLine("Alright!");
-                            _player2 = new Player(input);
-                            _choosing = false;
-                            break;
-                        }
-                    case '2':
-                        {
-                            //If it's not correct, return them to the prompt
-                            Console.Clear();
-                            Console.WriteLine("Please clarify your name.");
-                            break;
-                        }
-                }
-            }
-            //yet again set the choosing
-            _choosing = true;
-            while(_choosing)
-            {
-                //prompt player 2 for their class
-                Console.WriteLine("Now, choose your combat class.");
-                char input3;
-                GetInputChar(out input3, "Paladin", "Warrior", "Cleric");
-                switch (input3)
-                {
-                    case '1':
-                        {
-                            //Initialize the player as a Paladin and signify that they're done choosing
-                            _player2 = new Paladin(_player2.GetName());
-                            _choosing = false;
-                            break;
-                        }
-                    case '2':
-                        {
-                            //Initialize the player as a Warrior and signify that they're done choosing
-                            _player2 = new Warrior(_player2.GetName());
-                            _choosing = false;
-                            break;
-                        }
-                    case '3':
-                        {
-                            //Initialize the player as a Cleric and signify that they're done choosing
-                            _player2 = new Cleric(_player2.GetName());
-                            _choosing = false;
-                            break;
-                        }
-                }
-            }
             //Clear out any clutter
             Console.Clear();
-            //Initialize the shop for the newly created players
-            _shop = new Shop(_player1, _player2);
         }
 
         //Function for the menu, or home screen
