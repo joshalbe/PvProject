@@ -176,6 +176,7 @@ namespace PvProject
 			//Then remove the item itself from the inventory
 			_inventory[0] = new Item("Empty", 0, 0, 0, 0, 0, 0, 0);
         }
+
 		public double GetHP()
         {
 			//Function to return the HP value of the player
