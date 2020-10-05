@@ -27,3 +27,9 @@ C:\Users\josha\source\repos\PvProject4\obj\Debug\netcoreapp3.1\PvProject.csproj.
 C:\Users\josha\source\repos\PvProject4\obj\Debug\netcoreapp3.1\PvProject.dll
 C:\Users\josha\source\repos\PvProject4\obj\Debug\netcoreapp3.1\PvProject.pdb
 C:\Users\josha\source\repos\PvProject4\obj\Debug\netcoreapp3.1\PvProject.genruntimeconfig.cache
+C:\Users\s208068\source\repos\PvProject\bin\Debug\netcoreapp3.1\PvProject.exe
+C:\Users\s208068\source\repos\PvProject\bin\Debug\netcoreapp3.1\PvProject.deps.json
+C:\Users\s208068\source\repos\PvProject\bin\Debug\netcoreapp3.1\PvProject.runtimeconfig.json
+C:\Users\s208068\source\repos\PvProject\bin\Debug\netcoreapp3.1\PvProject.runtimeconfig.dev.json
+C:\Users\s208068\source\repos\PvProject\bin\Debug\netcoreapp3.1\PvProject.dll
+C:\Users\s208068\source\repos\PvProject\bin\Debug\netcoreapp3.1\PvProject.pdb

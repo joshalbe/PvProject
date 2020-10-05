@@ -226,6 +226,10 @@ namespace PvProject
 			_health = _maxHealth;
 			_mana = _magic;
 			_skillPoints = 1;
+			//Ensure the statuses are reset
+			_enraged = false;
+			_shielding = false;
+			_praying = false;
         }
 
 		public void WinReward()
