@@ -50,18 +50,12 @@ namespace PvProject
         //Initialize the choosing process, the gameover option, and the players
         bool _choosing = true;
         bool _gameOver = false;
-        Player _player1 = new Player("%nSh%");
-        Player _player2 = new Player("%nSh%");
-
-        //Initialize a save file
-        StreamWriter playFile;
+        Player _player1;
+        Player _player2;
         
         //Function to start the game
         void StartGame()
         {
-            //Initiate a blank save file so the program doesn't crash if a save file isn't there.
-            SaveScore("HighScore.txt");
-
             //While the first player is still choosing their various details
             while (_choosing)
             {
@@ -311,7 +305,7 @@ namespace PvProject
         void SaveScore(string path)
         {
             //Create a file to write data within
-            playFile = File.CreateText(path);
+            StreamWriter playFile = File.CreateText(path);
 
             //Decide which player had the best score
             if(_player1.GetScore() > _player2.GetScore())
@@ -339,32 +333,27 @@ namespace PvProject
             playFile.Close();
         }
 
-        void LoadScore(string path)
+        bool LoadScore(string path)
         {
+            //Make sure the file exists
+            if(!File.Exists(path))
+            {
+                //And stop the process if it doesn't, while alerting the player to the issue
+                Console.WriteLine("No save file has been saved yet.");
+                return false;
+            }
+
             //Create a reader to be able to retrieve the data
             StreamReader reader = File.OpenText(path);
 
-            //Retrieve the information from the file
-            string line1 = reader.ReadLine();
-            string line2 = reader.ReadLine();
-            string line3 = reader.ReadLine();
+            //Display the name, class and score of the previously saved high score
+            Console.WriteLine("Name: " + reader.ReadLine());
+            Console.WriteLine("Class: " + reader.ReadLine());
+            Console.WriteLine("Score: " + reader.ReadLine());
 
-            //If the player names match the placeholder for an originally empty file
-            if (line1 == "%nSh% and %nSh%")
-            {
-                //Display that a highscore isn't saved yet
-                Console.WriteLine("There is no saved high score yet!");
-            }
-            //Otherwise
-            else
-            {
-                //Display the name, class and score of the previously saved high score
-                Console.WriteLine("Name: " + line1);
-                Console.WriteLine("Class: " + line2);
-                Console.WriteLine("Score: " + line3);
-            }
             //Close the file
             reader.Close();
+            return true;
         }
     }
 }
