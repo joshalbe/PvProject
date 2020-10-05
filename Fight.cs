@@ -30,8 +30,8 @@ namespace PvProject
             while (_fightOver == false)
             {
                 //cycle through turns
-                FirstPlayerTurn(_player2.GetHP(), _player1.GetHP());
-                SecondPlayerTurn(_player1.GetHP(), _player2.GetHP());
+                PlayerTurn(_player1, _player2);
+                PlayerTurn(_player2, _player1);
             }
 
             //if Player 1 came out on top, reward them
@@ -58,27 +58,26 @@ namespace PvProject
             _player2.ReturnToFull();
         }
 
-        //Function for Player 1's turn
-        void FirstPlayerTurn(double enemyHP, double yourHP)
+        void PlayerTurn(Player player, Player enemy)
         {
             //Increase the turn count
             _turnCount++;
             //Determine whether Player 2 is defeated
-            if (enemyHP <= 0 && yourHP > 0)
+            if (enemy.GetHP() <= 0 && player.GetHP() > 0)
             {
                 //and if they are, end the fight
                 _fightOver = true;
                 //and declare the victor
-                Console.WriteLine(_player1._name + " wins!");
+                Console.WriteLine(player._name + " wins!");
                 Console.ReadLine();
             }
             //Determine whether Player 1 was defeated in the last round
-            else if (yourHP <= 0 && enemyHP > 0)
+            else if (player.GetHP() <= 0 && enemy.GetHP() > 0)
             {
                 //if they were, end the fight
                 _fightOver = true;
                 //and declare the victor
-                Console.WriteLine(_player2._name + " wins!");
+                Console.WriteLine(enemy._name + " wins!");
                 Console.ReadLine();
             }
             //If nobody's defeated, then continue the fight
@@ -86,32 +85,32 @@ namespace PvProject
             {
                 //Show the players' statuses
                 Console.Clear();
-                _player1.PrintStats();
+                player.PrintStats();
                 Console.WriteLine();
-                _player2.PrintStats();
+                enemy.PrintStats();
                 Console.WriteLine();
 
                 //Check if they're a Paladin
-                if (_player1 is Paladin)
+                if (player is Paladin)
                 {
                     //And if they are, end their skill
-                    _player1.EndSkill();
+                    player.EndSkill();
                 }
                 //If the player is a Cleric and 5 turns have passed
-                else if (_player1 is Cleric && (_player1._skillTurn + 5) <= _turnCount)
+                else if (player is Cleric && (player._skillTurn + 5) <= _turnCount)
                 {
                     //End their skill
-                    _player1.EndSkill();
+                    player.EndSkill();
                 }
                 //if the player's a Warrior and 3 turns have passed
-                else if (_player1 is Warrior && (_player1._skillTurn + 3) <= _turnCount)
+                else if (player is Warrior && (player._skillTurn + 3) <= _turnCount)
                 {
                     //End their skill
-                    _player1.EndSkill();
+                    player.EndSkill();
                 }
 
                 //Ask for the input from the player for their turn
-                Console.WriteLine(_player1._name + ", you're up! What will you do?");
+                Console.WriteLine(player._name + ", you're up! What will you do?");
                 char input;
                 GetInputChar(out input, "Attack", "Heal", "Skill", "Taunt");
                 //Depending on their choice...
@@ -120,142 +119,39 @@ namespace PvProject
                     case '1':
                         {
                             //if the enemy is a paladin and has their shield up
-                            if (_player2 is Paladin && _player2._shielding == true)
+                            if (enemy is Paladin && enemy._shielding == true)
                             {
                                 //initiate the paladin skill
-                                _player2.SkillPart2(_player1);
+                                enemy.SkillPart2(player);
                             }
                             //else, attack as normal
                             else
                             {
                                 //Attack the enemy player
-                                _player1.Attack(_player2);
+                                player.Attack(enemy);
                             }
                             break;
                         }
                     case '2':
                         {
                             //The player heals themselves
-                            _player1.Heal();
+                            player.Heal();
                             break;
                         }
                     case '3':
                         {
                             //Activates the player's skill
-                            _player1.Skill();
+                            player.Skill();
                             //Marks the turn the skill was activated
-                            _player1._skillTurn = _turnCount;
+                            player._skillTurn = _turnCount;
                             break;
                         }
                     case '4':
                         {
                             //Taunts the opposing player
-                            _player1.Taunt(_player2);
+                            player.Taunt(enemy);
                             break;
                         }
-                }
-            }
-        }
-
-        //Function for PLayer 2's turn
-        void SecondPlayerTurn(double enemyHP, double yourHP)
-        {
-            //Increase the turn count
-            _turnCount++;
-            //Check if the fight ended already
-            if (!_fightOver)
-            {
-                //if it didn't, then check if Player 1 was defeated
-                if (enemyHP <= 0 && yourHP > 0)
-                {
-                    //If he was, then end the fight
-                    _fightOver = true;
-                    //And declare a victor
-                    Console.WriteLine(_player2._name + " wins!");
-                    Console.ReadLine();
-                }
-                //Check if Player 2 was defeated
-                else if (yourHP <= 0 && enemyHP > 0)
-                {
-                    //If they were, then end the fight
-                    _fightOver = true;
-                    //and declare a victor
-                    Console.WriteLine(_player1._name + " wins!");
-                    Console.ReadLine();
-                }
-                //If nobody's beaten yet, continue on
-                else
-                {
-                    //Show the Players' statuses
-                    Console.Clear();
-                    _player1.PrintStats();
-                    Console.WriteLine();
-                    _player2.PrintStats();
-                    Console.WriteLine();
-
-                    //If P2 is a Paladin
-                    if(_player2 is Paladin)
-                    {
-                        //End their skill
-                        _player2.EndSkill();
-                    }
-                    //If P2 is a Cleric and 5 turns have passed
-                    else if(_player2 is Cleric && _player2._skillTurn <= (_turnCount + 5))
-                    {
-                        //End their skill
-                        _player2.EndSkill();
-                    }
-                    //If P2 is a Warrior and 3 turns have passed
-                    else if(_player2 is Warrior && _player2._skillTurn <= (_turnCount + 3))
-                    {
-                        //End their skill
-                        _player2.EndSkill();
-                    }
-
-                    //Prompt the player to choose their turn action
-                    Console.WriteLine(_player2.GetName() + ", you're up! What will you do?");
-                    char input;
-                    GetInputChar(out input, "Attack", "Heal", "Skill", "Taunt");
-                    //Depending on their choice
-                    switch (input)
-                    {
-                        case '1':
-                            {
-                                //if the enemy is a paladin and has their shield up
-                                if(_player1 is Paladin && _player1._shielding == true)
-                                {
-                                    //initiate the paladin skill
-                                    _player1.SkillPart2(_player2);
-                                }
-                                //else, attack as normal
-                                else
-                                {
-                                    //Attack the enemy player
-                                    _player2.Attack(_player1);
-                                }
-                                break;
-                            }
-                        case '2':
-                            {
-                                //Heal the Player
-                                _player2.Heal();
-                                break;
-                            }
-                        case '3':
-                            {
-                                //Activate the Player's skill
-                                _player2.Skill();
-                                //Mark the turn the skill was used
-                                _player2._skillTurn = _turnCount;
-                                break;
-                            }
-                        case '4':
-                            {
-                                //Taunt the opposing player
-                                _player2.Taunt(_player1);
-                                break;
-                            }
-                    }
                 }
             }
         }
