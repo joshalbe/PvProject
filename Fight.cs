@@ -97,7 +97,7 @@ namespace PvProject
                     player.EndSkill();
                 }
                 //If the player is a Cleric and 5 turns have passed
-                else if (player is Cleric && (player._skillTurn + 5) <= _turnCount)
+                else if (player is Cleric && (player._skillTurn + 3) <= _turnCount)
                 {
                     //End their skill
                     player.EndSkill();
@@ -140,10 +140,19 @@ namespace PvProject
                         }
                     case '3':
                         {
-                            //Activates the player's skill
-                            player.Skill();
-                            //Marks the turn the skill was activated
-                            player._skillTurn = _turnCount;
+                            //Activates the player's skill, if possible
+                            if(player.Skill())
+                            {
+                                //Marks the turn the skill was activated
+                                player._skillTurn = _turnCount;
+                            }
+                            else
+                            {
+                                //If the player doesn't have the SP, returns them to taking their turn
+                                PlayerTurn(player, enemy);
+                                //Ensures the turn count remains the same
+                                _turnCount--;
+                            }
                             break;
                         }
                     case '4':

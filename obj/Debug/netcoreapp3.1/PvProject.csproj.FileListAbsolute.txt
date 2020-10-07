@@ -33,3 +33,14 @@ C:\Users\s208068\source\repos\PvProject\bin\Debug\netcoreapp3.1\PvProject.runtim
 C:\Users\s208068\source\repos\PvProject\bin\Debug\netcoreapp3.1\PvProject.runtimeconfig.dev.json
 C:\Users\s208068\source\repos\PvProject\bin\Debug\netcoreapp3.1\PvProject.dll
 C:\Users\s208068\source\repos\PvProject\bin\Debug\netcoreapp3.1\PvProject.pdb
+C:\Users\s208068\source\repos\PvProject5\bin\Debug\netcoreapp3.1\PvProject.exe
+C:\Users\s208068\source\repos\PvProject5\bin\Debug\netcoreapp3.1\PvProject.deps.json
+C:\Users\s208068\source\repos\PvProject5\bin\Debug\netcoreapp3.1\PvProject.runtimeconfig.json
+C:\Users\s208068\source\repos\PvProject5\bin\Debug\netcoreapp3.1\PvProject.runtimeconfig.dev.json
+C:\Users\s208068\source\repos\PvProject5\bin\Debug\netcoreapp3.1\PvProject.dll
+C:\Users\s208068\source\repos\PvProject5\bin\Debug\netcoreapp3.1\PvProject.pdb
+C:\Users\s208068\source\repos\PvProject5\obj\Debug\netcoreapp3.1\PvProject.csprojAssemblyReference.cache
+C:\Users\s208068\source\repos\PvProject5\obj\Debug\netcoreapp3.1\PvProject.AssemblyInfoInputs.cache
+C:\Users\s208068\source\repos\PvProject5\obj\Debug\netcoreapp3.1\PvProject.AssemblyInfo.cs
+C:\Users\s208068\source\repos\PvProject5\obj\Debug\netcoreapp3.1\PvProject.dll
+C:\Users\s208068\source\repos\PvProject5\obj\Debug\netcoreapp3.1\PvProject.pdb

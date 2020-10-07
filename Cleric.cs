@@ -62,7 +62,9 @@ namespace PvProject
 			if(_mana <= 0)
             {
 				//If there isn't, alert the player to it
+				Console.WriteLine();
 				Console.WriteLine("You don't have enough mana to heal!");
+				Console.ReadLine();
 			}
 			//Otherwise, proceed
 			else
@@ -109,7 +111,7 @@ namespace PvProject
 			if(_praying == true)
             {
 				//Take less damage than normal at the cost of some mana
-				damage -= _mana;
+				damage -= (_mana / 2);
 				if(damage < 5)
                 {
 					damage = 5;
@@ -130,13 +132,16 @@ namespace PvProject
 			Console.Clear();
 		}
 
-        public override void Skill()
+        public override bool Skill()
 		{
 			//Check to make sure the player has enough skill points
 			if (_skillPoints <= 0)
 			{
 				//If they don't have enough, let the player know
+				Console.WriteLine();
 				Console.WriteLine("You don't have enough SP!");
+				Console.ReadLine();
+				return false;
 			}
 			//if they have enough
 			else
@@ -148,6 +153,7 @@ namespace PvProject
 				//And subtract the used skill points
 				_skillPoints--;
 				Console.ReadLine();
+				return true;
 			}
 		}
 

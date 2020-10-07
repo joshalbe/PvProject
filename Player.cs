@@ -62,7 +62,7 @@ namespace PvProject
 			if(_mana <= 0)
             {
 				//If there isn't let the player know
-				Console.Clear();
+				Console.WriteLine();
 				Console.WriteLine("You don't have enough mana to heal!");
 				Console.ReadLine();
             }
@@ -94,13 +94,14 @@ namespace PvProject
 		}
 
 		//Function for the player's skill
-		public virtual void Skill() 
+		public virtual bool Skill() 
 		{
 			//Classless players wouldn't have a skill, so it tells them this
 			Console.WriteLine();
 			Console.WriteLine("You have no equipped skills!");
 			Console.ReadLine();
             Console.Clear();
+			return false;
 		}
 
 		//Function for the part of a skill that would activate on an enemy's turn

@@ -24,13 +24,16 @@ namespace PvProject
 			_shielding = false;
 		}
 
-        public override void Skill()
+        public override bool Skill()
         {
 			//Check if there are another skill points
 			if(_skillPoints <= 0)
             {
 				//if not, then let the player know
+				Console.WriteLine();
 				Console.WriteLine("You don't have enough SP!");
+				Console.ReadLine();
+				return false;
             }
 			else
             {
@@ -42,6 +45,7 @@ namespace PvProject
 				//and subtract the used skill points
 				_skillPoints--;
 				Console.ReadLine();
+				return true;
             }
         }
 

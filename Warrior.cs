@@ -47,13 +47,16 @@ namespace PvProject
 			enemy.TakeDamage(this, damage);
 		}
 
-        public override void Skill()
+        public override bool Skill()
 		{
 			//Check to make sure the player has enough skill points
 			if (_skillPoints <= 0)
 			{
 				//If not, alert them to their deficiency
+				Console.WriteLine();
 				Console.WriteLine("You don't have enough SP!");
+				Console.ReadLine();
+				return false;
 			}
 			//If they do
 			else
@@ -65,6 +68,7 @@ namespace PvProject
 				//And deduct the used skill points
 				_skillPoints--;
 				Console.ReadLine();
+				return true;
 			}
 		}
 

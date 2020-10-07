@@ -97,6 +97,7 @@ namespace PvProject
                 //Display the item's name and price
                 Console.WriteLine((i + 1) + "." + inventory[i]._name + "  " + inventory[i]._value + "gp");
             }
+            Console.WriteLine("6.Return to Menu");
             //Receive input from the Player on their choice
             char input;
             GetInputChar(out input);
@@ -163,6 +164,11 @@ namespace PvProject
                         }
                         break;
                     }
+                case '6':
+                    {
+                        Console.WriteLine("Come again soon!");
+                        break;
+                    }
             }
             Console.ReadLine();
         }
@@ -210,7 +216,7 @@ namespace PvProject
             //Initialize input
             input = ' ';
             //Loop until the player enters a valid input
-            while (input != '1' && input != '2' && input != '3' && input != '4' && input != '5')
+            while (input != '1' && input != '2' && input != '3' && input != '4' && input != '5' && input != '6')
             {
                 Console.Write("> ");
                 input = Console.ReadKey().KeyChar;
