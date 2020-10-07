@@ -19,8 +19,12 @@
 - Get Input String - Players will be asked to type in their names
 - Get Input Numbers - Players will be asked to select options from a list via inputting numbers
 
-1. Output Information
-- 
+3. Output Information
+- Damage when a player attacks
+- Any health restored upon healing
+- Activation of a skill
+- Each player's stats
+- Shop item options
 
 ## II. Errors
 
